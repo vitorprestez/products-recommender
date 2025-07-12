@@ -1,10 +1,9 @@
-// useForm.js
-import { useState } from 'react';
+import { useState } from "react";
 
-const useForm = (initialState) => {
+const useForm = (initialState: any) => {
   const [formData, setFormData] = useState(initialState);
 
-  const handleChange = (field, value) => {
+  const handleChange = (field: any, value: any) => {
     setFormData({ ...formData, [field]: value });
   };
 
