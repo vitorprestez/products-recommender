@@ -1,21 +1,22 @@
 // Preferences.js
 
-import React, { useState } from 'react';
-import Checkbox from '../../shared/Checkbox';
+import Checkbox from "../../shared/Checkbox";
 
+interface PreferenceProps {
+  preferences: string[];
+  selectedPreferences: string[];
+  onPreferenceChange: (selected: string[]) => void;
+}
 function Preferences({
   preferences,
   selectedPreferences = [],
   onPreferenceChange,
-}) {
-  const [currentPreferences, setCurrentPreferences] = useState(selectedPreferences)
+}: PreferenceProps) {
+  const handlePreferenceChange = (preference: string) => {
+    const updatedPreferences = selectedPreferences.includes(preference)
+      ? selectedPreferences.filter((pref) => pref !== preference)
+      : [...selectedPreferences, preference];
 
-  const handlePreferenceChange = (preference) => {
-    const updatedPreferences = currentPreferences.includes(preference)
-      ? currentPreferences.filter((pref) => pref !== preference)
-      : [...currentPreferences, preference];
-
-    setCurrentPreferences(updatedPreferences);
     onPreferenceChange(updatedPreferences);
   };
 
@@ -27,7 +28,7 @@ function Preferences({
           <li key={index} className="mb-2">
             <Checkbox
               value={preference}
-              checked={currentPreferences.includes(preference)}
+              checked={selectedPreferences.includes(preference)}
               onChange={() => handlePreferenceChange(preference)}
               className="text-blue-500"
             >
