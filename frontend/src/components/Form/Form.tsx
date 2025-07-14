@@ -17,7 +17,7 @@ function Form({ setRecommendations }: FormProps) {
   const { formData, handleChange, resetForm } = useForm({
     selectedPreferences: [],
     selectedFeatures: [],
-    selectedRecommendationType: RecommendationMode.MultipleProducts,
+    selectedRecommendationType: RecommendationMode.SingleProduct,
   });
 
   const { getRecommendations } = useRecommendations(products);

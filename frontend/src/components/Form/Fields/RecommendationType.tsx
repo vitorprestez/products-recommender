@@ -13,7 +13,7 @@ const options = [
 
 function RecommendationType({
   onRecommendationTypeChange,
-  selectedRecommendationType = RecommendationMode.MultipleProducts,
+  selectedRecommendationType = RecommendationMode.SingleProduct,
 }: RecommendationTypeProps) {
   return (
     <div className="mb-4">

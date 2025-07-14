@@ -1,9 +1,19 @@
 import { useState } from "react";
+import { RecommendationMode } from "../types/recommendation";
 
-const useForm = (initialState: any) => {
-  const [formData, setFormData] = useState(initialState);
+interface UseFormProps {
+  selectedPreferences: string[];
+  selectedFeatures: string[];
+  selectedRecommendationType: RecommendationMode;
+}
 
-  const handleChange = (field: any, value: any) => {
+const useForm = (initialState: UseFormProps) => {
+  const [formData, setFormData] = useState<UseFormProps>(initialState);
+
+  const handleChange = (
+    field: keyof UseFormProps,
+    value: string[] | string
+  ) => {
     setFormData({ ...formData, [field]: value });
   };
 
