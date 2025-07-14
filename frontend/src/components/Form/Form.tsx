@@ -17,7 +17,7 @@ function Form({ setRecommendations }: FormProps) {
   const { formData, handleChange } = useForm({
     selectedPreferences: [],
     selectedFeatures: [],
-    selectedRecommendationType: "",
+    selectedRecommendationType: RecommendationMode.MultipleProducts,
   });
 
   const { getRecommendations } = useRecommendations(products);
@@ -59,6 +59,7 @@ function Form({ setRecommendations }: FormProps) {
         }
       />
       <RecommendationType
+        selectedRecommendationType={formData.selectedRecommendationType}
         onRecommendationTypeChange={(selected: RecommendationMode) =>
           handleChange("selectedRecommendationType", selected)
         }
