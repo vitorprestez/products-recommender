@@ -27,7 +27,7 @@ const getRecommendations = (
   if (scored.length === 0) return [];
 
   if (mode === RecommendationMode.MultipleProducts) {
-    scored.sort((a, b) => a.score - b.score);
+    scored.sort((a, b) => b.score - a.score);
     return scored.map(({ product }) => product);
   }
 
