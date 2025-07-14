@@ -1,37 +1,46 @@
 import { Product } from "../types/product";
-import { RecommendationMode } from "../types/recommendation";
-
-interface FormData {
-  selectedPreferences: string[];
-  selectedFeatures: string[];
-}
+import { Filters, RecommendationMode } from "../types/recommendation";
 
 const getRecommendations = (
-  formData: FormData = { selectedPreferences: [], selectedFeatures: [] },
+  filters: Filters = { selectedPreferences: [], selectedFeatures: [] },
   products: Product[],
   mode: RecommendationMode = RecommendationMode.SingleProduct
 ): Product[] => {
-  /**
-   * Crie aqui a lógica para retornar os produtos recomendados.
-   */
+  const { selectedPreferences, selectedFeatures } = filters;
 
-  return [
-    {
-      id: 1,
-      name: "RD Station CRM",
-      category: "Vendas",
-      preferences: [
-        "Integração fácil com ferramentas de e-mail",
-        "Personalização de funis de vendas",
-        "Relatórios avançados de desempenho de vendas",
-      ],
-      features: [
-        "Gestão de leads e oportunidades",
-        "Automação de fluxos de trabalho de vendas",
-        "Rastreamento de interações com clientes",
-      ],
-    },
-  ];
+  const scored = products
+    .map((product) => {
+      const preferenceMatches = product.preferences.filter((preference) =>
+        selectedPreferences.includes(preference)
+      ).length;
+
+      const featureMatches = product.features.filter((feature) =>
+        selectedFeatures.includes(feature)
+      ).length;
+
+      const score = preferenceMatches + featureMatches;
+
+      return { product, score };
+    })
+    .filter(({ score }) => score > 0);
+
+  if (scored.length === 0) return [];
+
+  if (mode === RecommendationMode.MultipleProducts) {
+    scored.sort((a, b) => a.score - b.score);
+    return scored.map(({ product }) => product);
+  }
+
+  const bestScored = scored.reduce((acc, curr) => {
+    if (curr.score >= acc.score) return curr;
+    return acc;
+  });
+
+  return [bestScored.product];
 };
 
-export default { getRecommendations };
+const recommendationService = {
+  getRecommendations,
+};
+
+export default recommendationService;

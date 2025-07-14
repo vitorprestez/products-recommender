@@ -1,6 +1,10 @@
-import React from 'react';
+import { Product } from "../../types/product";
 
-function RecommendationList({ recommendations }) {
+interface RecommendationListProps {
+  recommendations: Product[];
+}
+
+function RecommendationList({ recommendations }: RecommendationListProps) {
   return (
     <div>
       <h2 className="text-lg font-bold mb-4">Lista de Recomendações:</h2>

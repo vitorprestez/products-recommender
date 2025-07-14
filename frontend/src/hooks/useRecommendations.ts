@@ -1,22 +1,17 @@
 import { useState } from "react";
 import recommendationService from "../services/recommendation.service";
 import { Product } from "../types/product";
-import { RecommendationMode } from "../types/recommendation";
-
-type FormData = {
-  selectedPreferences: string[];
-  selectedFeatures: string[];
-};
+import { Filters, RecommendationMode } from "../types/recommendation";
 
 const useRecommendations = (products: Product[]) => {
   const [recommendations, setRecommendations] = useState<Product[]>([]);
 
   const getRecommendations = (
-    formData: FormData,
+    filters: Filters,
     mode: RecommendationMode
   ): Product[] => {
     const result = recommendationService.getRecommendations(
-      formData,
+      filters,
       products,
       mode
     );
