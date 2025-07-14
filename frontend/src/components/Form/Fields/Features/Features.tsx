@@ -1,4 +1,4 @@
-import Checkbox from "../../shared/Checkbox";
+import Checkbox from "../../../shared/Checkbox";
 
 interface FeaturesProps {
   features: string[];

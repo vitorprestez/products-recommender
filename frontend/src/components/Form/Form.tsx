@@ -75,6 +75,7 @@ function Form({ setRecommendations }: FormProps) {
       <div className="flex flex-col gap-2 mt-4">
         <SubmitButton text="Obter recomendação" />
         <button
+          data-testid="remote-filters-button"
           type="button"
           onClick={handleReset}
           className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition"

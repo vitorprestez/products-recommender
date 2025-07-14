@@ -1,6 +1,4 @@
-// Preferences.js
-
-import Checkbox from "../../shared/Checkbox";
+import Checkbox from "../../../shared/Checkbox";
 
 interface PreferenceProps {
   preferences: string[];

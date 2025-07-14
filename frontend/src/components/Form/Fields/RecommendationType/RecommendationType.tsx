@@ -1,5 +1,5 @@
-import { RecommendationMode } from "../../../types/recommendation";
-import Checkbox from "../../shared/Checkbox";
+import { RecommendationMode } from "../../../../types/recommendation";
+import Checkbox from "../../../shared/Checkbox";
 
 interface RecommendationTypeProps {
   onRecommendationTypeChange: (mode: RecommendationMode) => void;
@@ -22,6 +22,7 @@ function RecommendationType({
         {options.map(({ label, value }) => (
           <label key={value} htmlFor={value} className="flex items-center mr-4">
             <Checkbox
+              data-testid={value}
               type="radio"
               id={value}
               name="recommendationType"

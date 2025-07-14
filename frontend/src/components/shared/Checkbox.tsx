@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, ReactNode } from "react";
+import { InputHTMLAttributes, ReactNode } from "react";
 
 interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   children?: ReactNode;
@@ -8,6 +8,7 @@ function Checkbox({ children, ...props }: CheckboxProps) {
   return (
     <label className="flex items-center">
       <input
+        data-testid="checkbox"
         type="checkbox"
         className="form-checkbox h-5 w-5 text-blue-500"
         {...props}
