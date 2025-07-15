@@ -48,9 +48,14 @@ function Form({ setRecommendations }: FormProps) {
 
   return (
     <form
-      className="max-w-md mx-auto p-4 bg-white rounded-lg shadow-md"
+      className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md"
       onSubmit={handleSubmit}
+      data-testid="form"
     >
+      <h2 className="text-xl font-semibold mb-4" tabIndex={0}>
+        Selecione suas preferências e funcionalidades
+      </h2>
+
       <Preferences
         preferences={preferences}
         selectedPreferences={formData.selectedPreferences}
@@ -58,6 +63,7 @@ function Form({ setRecommendations }: FormProps) {
           handleChange("selectedPreferences", selected)
         }
       />
+
       <Features
         features={features}
         selectedFeatures={formData.selectedFeatures}
@@ -65,6 +71,7 @@ function Form({ setRecommendations }: FormProps) {
           handleChange("selectedFeatures", selected)
         }
       />
+
       <RecommendationType
         selectedRecommendationType={formData.selectedRecommendationType}
         onRecommendationTypeChange={(selected: RecommendationMode) =>
@@ -73,12 +80,13 @@ function Form({ setRecommendations }: FormProps) {
       />
 
       <div className="flex flex-col gap-2 mt-4">
-        <SubmitButton text="Obter recomendação" />
+        <SubmitButton text="Obter recomendações" />
+
         <button
-          data-testid="remote-filters-button"
+          data-testid="remove-filters-button"
           type="button"
           onClick={handleReset}
-          className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition"
+          className="px-4 py-2 bg-gray-100  rounded hover:bg-gray-200 transition"
         >
           Limpar filtros
         </button>

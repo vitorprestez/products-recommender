@@ -5,6 +5,7 @@ interface PreferenceProps {
   selectedPreferences: string[];
   onPreferenceChange: (selected: string[]) => void;
 }
+
 function Preferences({
   preferences,
   selectedPreferences = [],
@@ -19,19 +20,21 @@ function Preferences({
   };
 
   return (
-    <div className="mb-4">
-      <h2 className="text-lg font-bold mb-2">Preferências:</h2>
-      <ul>
+    <div className="mb-6">
+      <h3 className="text-base font-semibold text-rd-primary mb-4" tabIndex={0}>
+        Preferências:
+      </h3>
+      <ul className="space-y-3">
         {preferences.map((preference, index) => (
-          <li key={index} className="mb-2">
+          <li key={index}>
             <Checkbox
+              label={preference}
+              id={preference}
               value={preference}
               checked={selectedPreferences.includes(preference)}
               onChange={() => handlePreferenceChange(preference)}
-              className="text-blue-500"
-            >
-              {preference}
-            </Checkbox>
+              className="accent-rd-highlight mt-0.5"
+            />
           </li>
         ))}
       </ul>

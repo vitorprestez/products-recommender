@@ -13,26 +13,28 @@ function Features({
 }: FeaturesProps) {
   const handleFeatureChange = (feature: string) => {
     const updatedFeatures = selectedFeatures.includes(feature)
-      ? selectedFeatures.filter((f) => f !== feature)
+      ? selectedFeatures.filter((feat) => feat !== feature)
       : [...selectedFeatures, feature];
 
     onFeatureChange(updatedFeatures);
   };
 
   return (
-    <div className="mb-4">
-      <h2 className="text-lg font-bold mb-2">Funcionalidades:</h2>
-      <ul>
+    <div className="mb-6">
+      <h3 className="text-base font-semibold text-rd-primary mb-4" tabIndex={0}>
+        Funcionalidades:
+      </h3>
+      <ul className="space-y-3">
         {features.map((feature, index) => (
-          <li key={index} className="mb-2">
+          <li key={index}>
             <Checkbox
+              label={feature}
+              id={feature}
               value={feature}
               checked={selectedFeatures.includes(feature)}
               onChange={() => handleFeatureChange(feature)}
-              className="text-green-500"
-            >
-              {feature}
-            </Checkbox>
+              className="accent-rd-highlight mt-0.5"
+            />
           </li>
         ))}
       </ul>

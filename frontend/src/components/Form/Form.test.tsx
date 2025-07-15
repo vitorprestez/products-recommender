@@ -39,7 +39,7 @@ describe("Form", () => {
     expect(screen.getByText("Funcionalidades:")).toBeInTheDocument();
     expect(screen.getByText("Tipo de Recomendação:")).toBeInTheDocument();
     expect(screen.getByTestId("submit-button")).toBeInTheDocument();
-    expect(screen.getByTestId("remote-filters-button")).toBeInTheDocument();
+    expect(screen.getByTestId("remove-filters-button")).toBeInTheDocument();
   });
 
   it("chama getRecommendations e setRecommendations ao submeter o formulário", () => {
@@ -58,7 +58,7 @@ describe("Form", () => {
   it("reseta o formulário e limpa recomendações ao clicar no botão de limpar filtros", () => {
     render(<Form setRecommendations={mockedSetRecommendations} />);
 
-    fireEvent.click(screen.getByTestId("remote-filters-button"));
+    fireEvent.click(screen.getByTestId("remove-filters-button"));
 
     expect(mockedResetForm).toHaveBeenCalled();
     expect(mockedSetRecommendations).toHaveBeenCalledWith([]);

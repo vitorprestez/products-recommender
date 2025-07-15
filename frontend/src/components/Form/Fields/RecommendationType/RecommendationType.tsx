@@ -16,23 +16,24 @@ function RecommendationType({
   selectedRecommendationType = RecommendationMode.SingleProduct,
 }: RecommendationTypeProps) {
   return (
-    <div className="mb-4">
-      <h2 className="text-lg font-bold mb-2">Tipo de Recomendação:</h2>
-      <div className="flex items-center">
-        {options.map(({ label, value }) => (
-          <label key={value} htmlFor={value} className="flex items-center mr-4">
-            <Checkbox
-              data-testid={value}
-              type="radio"
-              id={value}
-              name="recommendationType"
-              value={value}
-              checked={selectedRecommendationType === value}
-              onChange={() => onRecommendationTypeChange(value)}
-              className="mr-2"
-            />
-            <span>{label}</span>
-          </label>
+    <div className="mb-6">
+      <h3 className="text-base font-semibold text-rd-primary mb-4" tabIndex={0}>
+        Tipo de Recomendação:
+      </h3>
+      <div className="space-y-3">
+        {options.map(({ label, value }, index) => (
+          <Checkbox
+            key={index}
+            label={label}
+            data-testid={value}
+            type="radio"
+            id={value}
+            name="recommendationType"
+            value={value}
+            checked={selectedRecommendationType === value}
+            onChange={() => onRecommendationTypeChange(value)}
+            className="accent-rd-highlight mt-0.5"
+          />
         ))}
       </div>
     </div>

@@ -3,7 +3,7 @@ import Checkbox from "./Checkbox";
 
 describe("Checkbox", () => {
   it("renderiza o checkbox e o texto filho", () => {
-    render(<Checkbox>Teste</Checkbox>);
+    render(<Checkbox id={"teste"} label="Teste" />);
 
     const checkbox = screen.getByTestId("checkbox");
     expect(checkbox).toBeInTheDocument();
@@ -13,7 +13,14 @@ describe("Checkbox", () => {
   });
 
   it("passa as props corretamente para o input", () => {
-    render(<Checkbox id="checkbox" checked={true} onChange={() => {}} />);
+    render(
+      <Checkbox
+        id="checkbox"
+        checked={true}
+        onChange={() => {}}
+        label="teste"
+      />
+    );
 
     const checkbox = screen.getByTestId("checkbox");
     expect(checkbox).toHaveAttribute("id", "checkbox");
@@ -22,7 +29,7 @@ describe("Checkbox", () => {
 
   it("dispara o onChange quando clicado", () => {
     const handleChange = jest.fn();
-    render(<Checkbox onChange={handleChange} />);
+    render(<Checkbox onChange={handleChange} id={"teste"} label="teste" />);
 
     const checkbox = screen.getByTestId("checkbox");
     fireEvent.click(checkbox);

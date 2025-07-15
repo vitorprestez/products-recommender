@@ -2,12 +2,12 @@ interface SubmitButtonProps {
   text: string;
 }
 
-function SubmitButton({ text }: SubmitButtonProps) {
+export function SubmitButton({ text }: SubmitButtonProps) {
   return (
     <button
       data-testid="submit-button"
       type="submit"
-      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      className="px-4 py-2 bg-rd-primary hover:bg-rd-primary/80 text-white rounded transition"
     >
       {text}
     </button>
